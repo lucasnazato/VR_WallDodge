@@ -4,13 +4,31 @@ using UnityEngine;
 
 public class PlayerBase : MonoBehaviour
 {
-    public bool isActive = false;
+    public Vector3 movePos;
 
-    private void OnTriggerEnter(Collider other)
+    GameObject player;
+    bool canMove = false;
+
+    float timeToMove = 0.45f;
+
+    private void Start()
     {
-        if(other.CompareTag("Wall") && isActive)
-        {
-            print("GameOver");
-        }
+        player = GameObject.FindGameObjectWithTag("Player");
+    }
+    
+    public void InvokeChangePosition()
+    {
+        Invoke("ChangePosition", timeToMove);
+        canMove = true;
+    }
+
+    public void CancelChangePosition()
+    {
+        canMove = false;
+    }
+
+    private void ChangePosition()
+    {
+        if (canMove) player.transform.position = movePos;
     }
 }

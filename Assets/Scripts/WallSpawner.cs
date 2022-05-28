@@ -8,23 +8,39 @@ public class WallSpawner : MonoBehaviour
     int index = -1;
     int randomIndex = 0;
 
-    void Start()
+    float initialDelay = 2;
+    public float timeBetweenWalls = 6;
+    public float wallSpeed = 5;
+    public int numberOfWalls = 10;
+    int loop = 0;
+
+    public void InvokeSpawnWall()
     {
-        Invoke("SpawnWall", 2f);
+        Invoke("SpawnWall", initialDelay);
     }
 
     void SpawnWall()
     {
+        loop++;
+
         do
         {
-            randomIndex = Random.Range(0, wallsArray.Length - 1);
+            randomIndex = Random.Range(0, wallsArray.Length);
         } while (randomIndex == index);
 
         index = randomIndex;
 
         GameObject tempWall = Instantiate(wallsArray[index], transform.position, Quaternion.identity);
-        tempWall.GetComponent<MoveWall>().speed = 5;
+        tempWall.GetComponent<MoveWall>().speed = wallSpeed;
 
-        Invoke("SpawnWall", 6f);
+        if (loop < numberOfWalls)
+        {
+
+        }
+
+        if (loop < numberOfWalls)
+        {
+            Invoke("SpawnWall", timeBetweenWalls);
+        }
     }
 }

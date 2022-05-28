@@ -11,13 +11,9 @@ public class GameManager : MonoBehaviour
 
     public TMP_Text txtScore;
     public GameObject pnGameOver;
+    public GameObject pnWin;
 
     int score = 0;
-
-    private void Start()
-    {
-        
-    }
 
     public void GameOver()
     {
@@ -27,7 +23,7 @@ public class GameManager : MonoBehaviour
 
         foreach(MoveWall wall in wallsArray)
         {
-            wall.enabled = false;
+            Destroy(wall.gameObject);
         }
         pnGameOver.SetActive(true);
     }
@@ -35,7 +31,22 @@ public class GameManager : MonoBehaviour
     public void UpdateScore(int value)
     {
         score += value;
-        txtScore.text = "Score: " + score.ToString();
+        txtScore.text = "Walls: " + score.ToString() + " / " + wallSpawner.GetComponent<WallSpawner>().numberOfWalls;
+
+        // Win Condition
+        if (score >= wallSpawner.GetComponent<WallSpawner>().numberOfWalls)
+        {
+            Destroy(wallSpawner);
+
+            MoveWall[] wallsArray = GameObject.FindObjectsOfType<MoveWall>();
+
+            foreach (MoveWall wall in wallsArray)
+            {
+                Destroy(wall.gameObject);
+            }
+
+            pnWin.SetActive(true);
+        }
     }
 
     public void RestartLevel()
