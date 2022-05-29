@@ -122,7 +122,7 @@ public class GvrEditorEmulator : MonoBehaviour
             GvrCursorHelper.HeadEmulationActive = true;
             rolled = true;
             mouseZ += Input.GetAxis(AXIS_MOUSE_X) * 5;
-            mouseZ = Mathf.Clamp(mouseZ, -85, 85);
+            mouseZ = Mathf.Clamp(mouseZ, -35, 35);
         }
         else
         {

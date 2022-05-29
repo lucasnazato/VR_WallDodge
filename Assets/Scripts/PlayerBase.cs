@@ -15,20 +15,22 @@ public class PlayerBase : MonoBehaviour
     {
         player = GameObject.FindGameObjectWithTag("Player");
     }
-    
+
+    // === CHANGE POSITION ===
     public void InvokeChangePosition()
     {
         Invoke("ChangePosition", timeToMove);
         canMove = true;
     }
 
-    public void CancelChangePosition()
-    {
-        canMove = false;
-    }
-
     private void ChangePosition()
     {
         if (canMove) player.transform.position = movePos;
+    }
+    
+    // ===
+    public void CancelBaseInvoke()
+    {
+        canMove = false;
     }
 }

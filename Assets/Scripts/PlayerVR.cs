@@ -43,9 +43,19 @@ public class PlayerVR : MonoBehaviour
                 break;
             case "Score":
                 gameManager.UpdateScore(1);
+                Destroy(other.gameObject);
                 break;
             default:
                 break;
         }
+
+        Invoke("ResetHeight", 0.2f);
+    }
+
+    private void ResetHeight()
+    {
+        gameObject.GetComponent<CapsuleCollider>().center = new Vector3(0, 0.95f, 0);
+        gameObject.GetComponent<CapsuleCollider>().height = 1.9f;
+        gameObject.transform.GetChild(0).transform.localPosition = new Vector3(0, 1.7f, 0);
     }
 }

@@ -35,11 +35,6 @@ public class WallSpawner : MonoBehaviour
 
         if (loop < numberOfWalls)
         {
-
-        }
-
-        if (loop < numberOfWalls)
-        {
             Invoke("SpawnWall", timeBetweenWalls);
         }
     }

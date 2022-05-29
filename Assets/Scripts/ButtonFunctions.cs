@@ -23,6 +23,8 @@ public class ButtonFunctions : MonoBehaviour
 
     GameManager gm;
 
+    bool invoke = true;
+
     private void Start()
     {
         gm = GameObject.FindObjectOfType<GameManager>();
@@ -103,6 +105,7 @@ public class ButtonFunctions : MonoBehaviour
 
     private void StartLevel()
     {
+        
         if (isLooking)
         {
             wallSpawner.enabled = true;
@@ -111,7 +114,12 @@ public class ButtonFunctions : MonoBehaviour
             wallSpawner.wallSpeed = wallSpeed;
             wallSpawner.numberOfWalls = numberOfWalls;
 
-            wallSpawner.InvokeSpawnWall();
+            
+            if (invoke) 
+            {
+                wallSpawner.InvokeSpawnWall();
+                invoke = false;
+            } 
 
             canvasStart.SetActive(false);
             canvasScore.SetActive(true);

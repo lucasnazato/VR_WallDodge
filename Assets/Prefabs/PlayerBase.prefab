@@ -158,7 +158,7 @@ MonoBehaviour:
       m_PersistentCalls:
         m_Calls:
         - m_Target: {fileID: 6810256053710312044}
-          m_MethodName: CancelChangePosition
+          m_MethodName: CancelBaseInvoke
           m_Mode: 1
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
