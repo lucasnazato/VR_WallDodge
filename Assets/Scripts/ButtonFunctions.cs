@@ -6,7 +6,7 @@ using UnityEngine.SceneManagement;
 public class ButtonFunctions : MonoBehaviour
 {
     bool isLooking = false;
-    float timeToButton = 0.5f;
+    float timeToButton = 0.6f;
 
     public GameObject imgEasy;
     public GameObject imgNormal;

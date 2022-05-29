@@ -8,6 +8,8 @@ public class PlayerVR : MonoBehaviour
 
     GameManager gameManager;
 
+    float cameraAngle;
+
     void Start()
     {
         // Lock cursor
@@ -19,9 +21,16 @@ public class PlayerVR : MonoBehaviour
 
     void Update()
     {
-        // Look At Direction
-        Vector3 lookDirection = playerCamera.transform.forward;
-        Vector3 startLocation = new Vector3(playerCamera.transform.position.x, playerCamera.transform.position.y - 0.5f, playerCamera.transform.position.z);
+        cameraAngle = playerCamera.transform.localEulerAngles.z;
+
+        if (Mathf.Abs(cameraAngle) > 1)
+        {
+            transform.rotation = Quaternion.Euler(0, 0, -cameraAngle);
+        }
+        else
+        {
+            transform.rotation = Quaternion.Euler(0, 0, 0);
+        }
     }
 
     private void OnTriggerEnter(Collider other)
